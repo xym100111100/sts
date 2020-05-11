@@ -30,5 +30,11 @@ public class DataSourceConfig {
     public DataSource account() {
         return DataSourceBuilder.create().build();
     }
+	
+	@Bean(name = "integral")
+    @ConfigurationProperties(prefix = "spring.datasource.integral") // application.properteis中对应属性的前缀
+    public DataSource integral() {
+        return DataSourceBuilder.create().build();
+    }
 }
 

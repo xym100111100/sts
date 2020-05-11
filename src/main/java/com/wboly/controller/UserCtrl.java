@@ -20,7 +20,7 @@ public class UserCtrl  {
     @Resource
     private UserService svc;
 	
-	@GetMapping("/getUser")
+	@GetMapping("/user/getUser")
 	public UserMo getUser(String openId) {
 		
 		return svc.getById(openId);
@@ -28,7 +28,7 @@ public class UserCtrl  {
 	
 
 	
-	@GetMapping("/getUserAll")
+	@GetMapping("/user/getUserAll")
 	public List<UserMo> getUserAll() {
 		
 		return svc.getAllUser();

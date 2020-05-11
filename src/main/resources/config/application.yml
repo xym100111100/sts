@@ -13,9 +13,9 @@ spring:
   datasource:
     order:
       name: order
-      jdbcUrl: jdbc:mysql://192.168.1.201:3306/ord?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      jdbcUrl: jdbc:mysql://8.129.161.91:3306/ord?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
       username: root
-      password: root
+      password: grE34GBfg
       # 使用druid数据源
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
@@ -34,9 +34,9 @@ spring:
       maxOpenPreparedStatements: 20
     user:
       name: user
-      jdbc-url: jdbc:mysql://192.168.1.201:3306/suc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://8.129.161.91:3306/suc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
       username: root
-      password: root
+      password: grE34GBfg
       # 使用druid数据源
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
@@ -55,9 +55,30 @@ spring:
       maxOpenPreparedStatements: 20
     account:
       name: account
-      jdbc-url: jdbc:mysql://192.168.1.201:3306/afc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://8.129.161.91:3306/afc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
       username: root
-      password: root
+      password: grE34GBfg
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+    integral:
+      name: integral
+      jdbc-url: jdbc:mysql://8.129.161.91:3306/pnt?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      username: root
+      password: grE34GBfg
       # 使用druid数据源
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver

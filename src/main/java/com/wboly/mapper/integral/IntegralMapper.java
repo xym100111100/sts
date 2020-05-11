@@ -1,41 +1,33 @@
-package com.wboly.mapper.user;
+package com.wboly.mapper.integral;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.type.JdbcType;
 
 import com.wboly.enums.UserSexEnum;
+import com.wboly.model.IntegralMo;
 import com.wboly.model.UserMo;
 
 
-public interface UserMapper {
-	
-
-
-	
-	@Select({"select ID,SALT,WX_OPENID from SUC_USER"})
-	@Results(id="studentMap", value={
-	    @Result(column="ID", property="id", jdbcType=JdbcType.INTEGER, id=true),
-	    @Result(column="SALT", property="salt", jdbcType=JdbcType.VARCHAR),
-	    @Result(column="WX_OPENID", property="wxOpenid", jdbcType=JdbcType.VARCHAR),
-	})
-	List<UserMo> getAll();
+public interface IntegralMapper {
 	
 	
-	@Select("SELECT ID,SALT,WX_OPENID FROM SUC_USER where  WX_OPENID = #{openId} ")
-	@ResultMap(value="studentMap")
-	UserMo getById(String openId);
 	
-	@Select("SELECT ID,SALT,WX_OPENID FROM SUC_USER where  WX_ID = #{unionId} ")
-	@ResultMap(value="studentMap")
-	UserMo getByUnionId(String unionId); 
+	@Select("SELECT * FROM PNT_ACCOUNT")
+	@Results(id="pntMap", value={
+			@Result(property = "id",  column = "ID"),
+			@Result(property = "orderCode", column = "ORDER_CODE")
+		})
+	List<IntegralMo> getAll();
+	
+	
+	@Select("SELECT * FROM PNT_ACCOUNT where  ID = #{id} ")
+	IntegralMo getById(Long id);
 	
 	
 	@Select("SELECT * FROM users WHERE id = #{id}")

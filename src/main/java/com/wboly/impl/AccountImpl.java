@@ -10,11 +10,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wboly.mapper.account.AccountMapper;
-import com.wboly.mapper.order.OrderMapper;
+import com.wboly.mapper.integral.IntegralMapper;
+import com.wboly.mapper.user.UserMapper;
 import com.wboly.model.AccountMo;
-import com.wboly.model.OrderMo;
+import com.wboly.model.AccountRo;
+import com.wboly.model.UserMo;
 import com.wboly.service.AccountService;
-import com.wboly.service.OrderService;
 
 
 
@@ -22,16 +23,23 @@ import com.wboly.service.OrderService;
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 public class AccountImpl implements  AccountService  {
 	
-    private static Logger logger= LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+    private static Logger log= LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
 	
 	@Autowired
 	private AccountMapper accountMapper;
 	
 	
+	@Autowired
+	private UserMapper userMapper;
+	
+	
+	@Autowired
+	private IntegralMapper integralMapper;
+	
+	
 	@Override
 	public AccountMo getById(Long id) {
-		logger.info("查询订单为{}",id);
 		AccountMo result = accountMapper.getById(id);
 		return result;
 	}
@@ -41,6 +49,14 @@ public class AccountImpl implements  AccountService  {
 	public List<AccountMo> listAll() {
 		
 		return accountMapper.getAll();
+	}
+
+	
+	@Override
+	public AccountRo getByUnionId(String unionId) {
+		UserMo userResult =  userMapper.getByUnionId(unionId);
+		
+		return null;
 	}
 
 }

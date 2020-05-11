@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @mbg.generated 自动生成的注释，如需修改本注释，请删除本行
  */
 @JsonInclude(Include.NON_NULL)
-public class Order implements Serializable {
+public class OrderMo implements Serializable {
 
     /**
      *    订单ID
@@ -1490,7 +1490,7 @@ public class Order implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Order other = (Order) that;
+        OrderMo other = (OrderMo) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()));
     }
 

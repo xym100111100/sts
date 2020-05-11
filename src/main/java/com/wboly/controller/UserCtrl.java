@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.wboly.model.User;
+import com.wboly.model.UserMo;
 import com.wboly.service.UserService;
 
 
@@ -21,7 +21,7 @@ public class UserCtrl  {
     private UserService svc;
 	
 	@GetMapping("/getUser")
-	public User getUser(String openId) {
+	public UserMo getUser(String openId) {
 		
 		return svc.getById(openId);
 	}
@@ -29,7 +29,7 @@ public class UserCtrl  {
 
 	
 	@GetMapping("/getUserAll")
-	public List<User> getUserAll() {
+	public List<UserMo> getUserAll() {
 		
 		return svc.getAllUser();
 	}

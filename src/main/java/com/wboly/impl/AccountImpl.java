@@ -9,35 +9,38 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wboly.mapper.account.AccountMapper;
 import com.wboly.mapper.order.OrderMapper;
+import com.wboly.model.AccountMo;
 import com.wboly.model.OrderMo;
+import com.wboly.service.AccountService;
 import com.wboly.service.OrderService;
 
 
 
 @Service
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-public class OrderImpl implements  OrderService  {
+public class AccountImpl implements  AccountService  {
 	
     private static Logger logger= LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
 	
 	@Autowired
-	private OrderMapper orderMapper;
+	private AccountMapper accountMapper;
 	
 	
 	@Override
-	public OrderMo getById(Long id) {
+	public AccountMo getById(Long id) {
 		logger.info("查询订单为{}",id);
-		OrderMo result = orderMapper.getById(id);
+		AccountMo result = accountMapper.getById(id);
 		return result;
 	}
 
 
 	@Override
-	public List<OrderMo> listAll() {
+	public List<AccountMo> listAll() {
 		
-		return orderMapper.getAll();
+		return accountMapper.getAll();
 	}
 
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @mbg.generated 自动生成的注释，如需修改本注释，请删除本行
  */
 @JsonInclude(Include.NON_NULL)
-public class User implements Serializable {
+public class UserMo implements Serializable {
 
     /**
      *    用户ID
@@ -993,7 +993,7 @@ public class User implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        User other = (User) that;
+        UserMo other = (UserMo) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()));
     }
 

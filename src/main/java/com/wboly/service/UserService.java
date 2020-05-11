@@ -2,11 +2,11 @@ package com.wboly.service;
 
 import java.util.List;
 
-import com.wboly.model.User;
+import com.wboly.model.UserMo;
 
 public interface UserService {
 	
-		User getById(String openId);
+		UserMo getById(String openId);
 		
-		List<User> getAllUser();
+		List<UserMo> getAllUser();
 }

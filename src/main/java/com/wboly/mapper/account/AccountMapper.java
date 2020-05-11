@@ -1,37 +1,33 @@
-package com.wboly.mapper.user;
+package com.wboly.mapper.account;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.type.JdbcType;
 
 import com.wboly.enums.UserSexEnum;
+import com.wboly.model.AccountMo;
 import com.wboly.model.UserMo;
 
 
-public interface UserMapper {
-	
-
-
-	
-	@Select({"select ID,SALT,WX_OPENID from SUC_USER"})
-	@Results(id="studentMap", value={
-	    @Result(column="ID", property="id", jdbcType=JdbcType.INTEGER, id=true),
-	    @Result(column="SALT", property="salt", jdbcType=JdbcType.VARCHAR),
-	    @Result(column="WX_OPENID", property="wxOpenid", jdbcType=JdbcType.VARCHAR),
-	})
-	List<UserMo> getAll();
+public interface AccountMapper {
 	
 	
-	@Select("SELECT ID,SALT,WX_OPENID FROM SUC_USER where  WX_OPENID = #{openId} ")
-	@ResultMap(value="studentMap")
-	UserMo getById(String openId);
+	
+	@Select("SELECT * FROM AFC_ACCOUNT")
+	@Results(id="accountMap", value={
+			@Result(property = "id",  column = "ID"),
+			@Result(property = "balance", column = "BALANCE")
+		})
+	List<AccountMo> getAll();
+	
+	
+	@Select("SELECT * FROM ORD_ORDER where  ID = #{id} ")
+	AccountMo getById(Long id);
 	
 	
 	@Select("SELECT * FROM users WHERE id = #{id}")

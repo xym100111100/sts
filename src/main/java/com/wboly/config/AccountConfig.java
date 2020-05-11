@@ -10,22 +10,22 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 @Configuration
-@MapperScan(basePackages = {"com.wboly.mapper.order"}, sqlSessionFactoryRef = "sqlSessionFactoryOrder")
-public class OrderConfig {
+@MapperScan(basePackages = {"com.wboly.mapper.account"}, sqlSessionFactoryRef = "sqlSessionFactoryAccount")
+public class AccountConfig {
 	@Autowired
-    @Qualifier("order")
-    private DataSource order;
+    @Qualifier("account")
+    private DataSource account;
 
     @Bean
-    public SqlSessionFactory sqlSessionFactoryOrder() throws Exception {
+    public SqlSessionFactory sqlSessionFactoryAccount() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
-        factoryBean.setDataSource(order); // 
+        factoryBean.setDataSource(account); // 连接 order 库
         return factoryBean.getObject();
     }
 
     @Bean
-    public SqlSessionTemplate sqlSessionTemplateOrder() throws Exception {
-        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactoryOrder()); // 使用上面配置的Factory
+    public SqlSessionTemplate sqlSessionTemplateAccount() throws Exception {
+        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactoryAccount()); // 使用上面配置的Factory
         return template;
     }
 }

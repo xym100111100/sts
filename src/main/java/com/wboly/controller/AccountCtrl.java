@@ -6,31 +6,31 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wboly.model.OrderMo;
-import com.wboly.service.OrderService;
+import com.wboly.model.AccountMo;
+import com.wboly.service.AccountService;
 
 
 
 
 
 @RestController
-public class OrderCtrl  {
+public class AccountCtrl  {
 	
 
 
     @Resource
-    private OrderService svc;
+    private AccountService svc;
 	
-	@GetMapping("/order/getById")
-	public OrderMo getUsers(Long id) {
+	@GetMapping("/account/getById")
+	public AccountMo getUsers(Long id) {
 		
 		return svc.getById(id);
 	}
 	
 	
 	
-	@GetMapping("/order/lisAll")
-	public List<OrderMo> lisAll(Long id) {
+	@GetMapping("/account/lisAll")
+	public List<AccountMo> lisAll(Long id) {
 		
 		return svc.listAll();
 	}

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wboly.mapper.user.UserMapper;
-import com.wboly.model.User;
+import com.wboly.model.UserMo;
 import com.wboly.service.UserService;
 
 
@@ -27,9 +27,9 @@ public class UserImpl implements  UserService  {
 	
 	
 	@Override
-	public User getById(String openId) {
+	public UserMo getById(String openId) {
 		logger.info("查询用户信息的openId为{}",openId);
-		User result =userMapper.getById(openId);
+		UserMo result =userMapper.getById(openId);
 		logger.info("查询用户信息的返回值为{}",result);
 
 		return result ;
@@ -37,7 +37,7 @@ public class UserImpl implements  UserService  {
 
 
 	@Override
-	public List<User> getAllUser() {
+	public List<UserMo> getAllUser() {
 		
 		return userMapper.getAll();
 	}

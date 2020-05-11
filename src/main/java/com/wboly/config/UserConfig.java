@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan(basePackages = {"com.wboly.mapper.user"}, sqlSessionFactoryRef = "sqlSessionFactorylogapi")
+@MapperScan(basePackages = {"com.wboly.mapper.user"}, sqlSessionFactoryRef = "sqlSessionFactoryUser")
 public class UserConfig {
 	
 	@Autowired
@@ -20,15 +20,15 @@ public class UserConfig {
     private DataSource user;
 
     @Bean
-    public SqlSessionFactory sqlSessionFactorylogapi() throws Exception {
+    public SqlSessionFactory sqlSessionFactoryUser() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(user); // 连接 logapi 库
         return factoryBean.getObject();
     }
 
     @Bean
-    public SqlSessionTemplate sqlSessionTemplatelogapi() throws Exception {
-        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactorylogapi()); // 使用上面配置的Factory
+    public SqlSessionTemplate sqlSessionTemplateUser() throws Exception {
+        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactoryUser()); // 使用上面配置的Factory
         return template;
     }
 }

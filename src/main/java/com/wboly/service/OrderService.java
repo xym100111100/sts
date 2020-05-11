@@ -1,8 +1,9 @@
 package com.wboly.service;
 
-import com.wboly.model.User;
+import com.wboly.model.Order;
+
 
 public interface OrderService {
 	
-		User getById(String openId);
+		Order getById(Long id);
 }

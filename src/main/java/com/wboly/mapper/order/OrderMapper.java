@@ -1,4 +1,4 @@
-package com.wboly.mapper;
+package com.wboly.mapper.order;
 
 import java.util.List;
 
@@ -10,21 +10,24 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.wboly.enums.UserSexEnum;
+import com.wboly.model.Order;
 import com.wboly.model.User;
 
 
-public interface UserMapper {
+public interface OrderMapper {
 	
-	@Select("SELECT * FROM SUC_USER")
+	
+	
+	@Select("SELECT * FROM ORD_ORDER")
 	@Results({
-		@Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class),
-		@Result(property = "nickName", column = "nick_name")
+		@Result(property = "id",  column = "user_sex", javaType = UserSexEnum.class),
+		@Result(property = "orderCode", column = "ORDER_CODE")
 	})
 	List<User> getAll();
 	
 	
-	@Select("SELECT * FROM SUC_USER where  WX_OPENID = #{openId} ")
-	User getById(String openId);
+	@Select("SELECT * FROM ORD_ORDER where  ID = #{id} ")
+	Order getById(Long id);
 	
 	
 	@Select("SELECT * FROM users WHERE id = #{id}")

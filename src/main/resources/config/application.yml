@@ -1,37 +1,59 @@
 server:
   port: 9100
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.201:8761/eureka/
 spring:
   rabbitmq:
       host: 192.168.1.201
       port: 5672
       username: guest
       password: guest
-    datasource:  
-      hnkyyy: 
-        name: hnkyyy
-        jdbc-url: jdbc:mysql://192.168.1.201:3306/suc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
-        username: suc
-        password: suc
-        # 使用druid数据源
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: oracle.jdbc.driver.OracleDriver
-        filters: stat
-        maxActive: 20
-        initialSize: 1
-        maxWait: 60000
-        minIdle: 1
-        timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: select 'x'
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        poolPreparedStatements: true
-        maxOpenPreparedStatements: 20
+  datasource:
+    hnkyyy:
+      name: hnkyyy
+      jdbcUrl: jdbc:mysql://192.168.1.201:3306/ord?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      username: root
+      password: root
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+    logapi:
+      name: logapi
+      jdbc-url: jdbc:mysql://192.168.1.201:3306/suc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      username: root
+      password: root
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
 
-
-  
 
 logging:
   config: classpath:config/log4j2.xml

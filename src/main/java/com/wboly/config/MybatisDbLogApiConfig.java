@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan(basePackages = {"com.wboly.mapper"}, sqlSessionFactoryRef = "sqlSessionFactorylogapi")
+@MapperScan(basePackages = {"com.wboly.mapper.user"}, sqlSessionFactoryRef = "sqlSessionFactorylogapi")
 public class MybatisDbLogApiConfig {
 	
 	@Autowired

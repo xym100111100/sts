@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 @Configuration
-@MapperScan(basePackages = {"com.wboly.mapper"}, sqlSessionFactoryRef = "sqlSessionFactoryCrm")
+@MapperScan(basePackages = {"com.wboly.mapper.order"}, sqlSessionFactoryRef = "sqlSessionFactoryCrm")
 public class MybatisDbhnkyyConfig {
 	@Autowired
     @Qualifier("hnkyyy")

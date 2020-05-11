@@ -1,29 +1,39 @@
 package com.wboly.controller;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.wboly.model.User;
-import com.wboly.service.OrderService;
+import com.wboly.service.UserService;
 
 
 
 
 
 @RestController
-public class Order  {
+public class UserCtrl  {
 	
 
 
     @Resource
-    private OrderService svc;
+    private UserService svc;
 	
-	@GetMapping("/getUsers")
-	public User getUsers(String openId) {
+	@GetMapping("/getUser")
+	public User getUser(String openId) {
 		
 		return svc.getById(openId);
 	}
+	
+
+	
+	@GetMapping("/getUserAll")
+	public List<User> getUserAll() {
+		
+		return svc.getAllUser();
+	}
+	
 	
 
 }

@@ -1,5 +1,4 @@
 package com.wboly.config;
-
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,26 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 @Configuration
-@MapperScan(basePackages = {"com.wboly.mapper.user"}, sqlSessionFactoryRef = "sqlSessionFactorylogapi")
-public class MybatisDbLogApiConfig {
-	
+@MapperScan(basePackages = {"com.wboly.mapper.order"}, sqlSessionFactoryRef = "sqlSessionFactoryCrm")
+public class OrderConfig {
 	@Autowired
-    @Qualifier("logapi")
-    private DataSource logapi;
+    @Qualifier("order")
+    private DataSource order;
 
     @Bean
-    public SqlSessionFactory sqlSessionFactorylogapi() throws Exception {
+    public SqlSessionFactory sqlSessionFactoryCrm() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
-        factoryBean.setDataSource(logapi); // 连接 logapi 库
+        factoryBean.setDataSource(order); // 连接 order 库
         return factoryBean.getObject();
     }
 
     @Bean
-    public SqlSessionTemplate sqlSessionTemplatelogapi() throws Exception {
-        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactorylogapi()); // 使用上面配置的Factory
+    public SqlSessionTemplate sqlSessionTemplateCrm() throws Exception {
+        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactoryCrm()); // 使用上面配置的Factory
         return template;
     }
 }
-

@@ -19,11 +19,11 @@ public interface OrderMapper {
 	
 	
 	@Select("SELECT * FROM ORD_ORDER")
-	@Results({
-		@Result(property = "id",  column = "user_sex", javaType = UserSexEnum.class),
-		@Result(property = "orderCode", column = "ORDER_CODE")
-	})
-	List<User> getAll();
+	@Results(id="studentMap", value={
+			@Result(property = "id",  column = "ID"),
+			@Result(property = "orderCode", column = "ORDER_CODE")
+		})
+	List<Order> getAll();
 	
 	
 	@Select("SELECT * FROM ORD_ORDER where  ID = #{id} ")

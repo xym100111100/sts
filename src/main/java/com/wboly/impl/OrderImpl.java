@@ -1,5 +1,7 @@
 package com.wboly.impl;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,13 @@ public class OrderImpl implements  OrderService  {
 		logger.info("查询订单为{}",id);
 		Order result = orderMapper.getById(id);
 		return result;
+	}
+
+
+	@Override
+	public List<Order> listAll() {
+		
+		return orderMapper.getAll();
 	}
 
 }

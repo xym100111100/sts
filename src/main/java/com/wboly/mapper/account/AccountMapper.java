@@ -26,8 +26,10 @@ public interface AccountMapper {
 	List<AccountMo> getAll();
 	
 	
-	@Select("SELECT * FROM ORD_ORDER where  ID = #{id} ")
+	@Select("SELECT * FROM AFC_ACCOUNT where  ID = #{id} ")
 	AccountMo getById(Long id);
+	
+
 	
 	
 	@Select("SELECT * FROM users WHERE id = #{id}")

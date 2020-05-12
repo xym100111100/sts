@@ -21,7 +21,7 @@ public class AccountRo implements Serializable {
 
 	private BigDecimal usermoney; 
 
-	private Integer integral;
+	private BigDecimal integral;
 
 	public String getRemark() {
 		return remark;
@@ -43,17 +43,19 @@ public class AccountRo implements Serializable {
 		return usermoney;
 	}
 
+	public BigDecimal getIntegral() {
+		return integral;
+	}
+
+	public void setIntegral(BigDecimal integral) {
+		this.integral = integral;
+	}
+
 	public void setUsermoney(BigDecimal usermoney) {
 		this.usermoney = usermoney;
 	}
 
-	public Integer getIntegral() {
-		return integral;
-	}
 
-	public void setIntegral(Integer integral) {
-		this.integral = integral;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

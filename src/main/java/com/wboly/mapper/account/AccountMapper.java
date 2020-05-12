@@ -1,5 +1,6 @@
 package com.wboly.mapper.account;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -42,8 +43,8 @@ public interface AccountMapper {
 	@Insert("INSERT INTO users(userName,passWord,user_sex) VALUES(#{userName}, #{passWord}, #{userSex})")
 	void insert(UserMo user);
 
-	@Update("UPDATE users SET userName=#{userName},nick_name=#{nickName} WHERE id =#{id}")
-	void update(UserMo user);
+	@Update("UPDATE AFC_ACCOUNT SET BALANCE=#{balance} WHERE id =#{id}")
+	int update(Long id , BigDecimal balance);
 
 	@Delete("DELETE FROM users WHERE id =#{id}")
 	void delete(Long id);

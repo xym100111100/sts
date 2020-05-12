@@ -42,8 +42,6 @@ public class UserImpl implements  UserService  {
 
 	@Override
 	public List<UserMo> getAllUser() {
-		List<AccountMo>  accountResult =  accountService.listAll();
-		logger.info("查询账户返回值:{}",accountResult);
 		return userMapper.getAll();
 	}
 

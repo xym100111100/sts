@@ -1,6 +1,7 @@
 package com.wboly.impl;
 
-import java.util.List;
+
+import java.math.BigDecimal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +15,7 @@ import com.wboly.mapper.integral.IntegralMapper;
 import com.wboly.mapper.user.UserMapper;
 import com.wboly.model.AccountMo;
 import com.wboly.model.AccountRo;
+import com.wboly.model.AccountTo;
 import com.wboly.model.IntegralMo;
 import com.wboly.model.UserMo;
 import com.wboly.service.AccountService;
@@ -33,26 +35,17 @@ public class AccountImpl implements AccountService {
 	@Autowired
 	private IntegralMapper integralMapper;
 
-	@Override
-	public AccountMo getById(Long id) {
-		AccountMo result = accountMapper.getById(id);
-		return result;
-	}
+
 
 	@Override
-	public List<AccountMo> listAll() {
-
-		return accountMapper.getAll();
-	}
-
-	@Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public AccountRo getByUnionId(String unionId) {
 		AccountRo result = new AccountRo();
 
 		UserMo userResult = userMapper.getByUnionId(unionId);
 		log.info("查询用户结果为:{}", userResult);
 		if (userResult == null) {
-			result.setRemark("账户不存在");
+			result.setRemark("用户不存在");
 			result.setResult(false);
 			return result;
 		}
@@ -80,6 +73,44 @@ public class AccountImpl implements AccountService {
 		result.setUsermoney(accountResult.getBalance());
 		result.setIntegral(integralResult.getPoint());
 		log.info("查询用户信息结果为result:{}", result);
+		return result;
+	}
+
+
+
+	@Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public AccountRo modify(AccountTo to) {
+		AccountRo result = new AccountRo();
+
+		UserMo userResult = userMapper.getByUnionId(to.getUnionId());
+		log.info("查询用户结果为:{}", userResult);
+		if (userResult == null) {
+			result.setRemark("账户不存在");
+			result.setResult(false);
+			return result;
+		}
+		
+		AccountMo accountResult = accountMapper.getById(userResult.getId());
+		log.info("查询用户账户结果为:{}", accountResult);
+		
+		if (accountResult == null) {
+			result.setRemark("用户账户不存在");
+			result.setResult(false);
+			return result;
+		}
+		
+		BigDecimal newNalance = accountResult.getBalance().add(to.getActionUsermoney());
+		log.info("旧的余额{},传过来的金额{},修改后的金额{}",accountResult.getBalance(),to.getActionUsermoney(),newNalance);
+		int i = accountMapper.update(userResult.getId(),newNalance);
+		log.info("修改账户的结果为{}",i);
+		if(i != 1) {
+			result.setResult(false);
+			result.setRemark("修改失败");
+		}
+		result.setResult(true);
+		result.setRemark("修改成功");
+		
 		return result;
 	}
 

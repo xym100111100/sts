@@ -45,7 +45,7 @@ public class AccountImpl implements AccountService {
 		UserMo userResult = userMapper.getByUnionId(unionId);
 		log.info("查询用户结果为:{}", userResult);
 		if (userResult == null) {
-			result.setRemark("用户不存在");
+			result.setMessage("用户不存在");
 			result.setResult(false);
 			return result;
 		}
@@ -54,7 +54,7 @@ public class AccountImpl implements AccountService {
 		log.info("查询用户账户结果为:{}", accountResult);
 		
 		if (accountResult == null) {
-			result.setRemark("用户账户不存在");
+			result.setMessage("用户账户不存在");
 			result.setResult(false);
 			return result;
 		}
@@ -63,12 +63,12 @@ public class AccountImpl implements AccountService {
 		log.info("查询用户积分结果为:{}", accountResult);
 		
 		if (integralResult == null) {
-			result.setRemark("用户积分账户不存在");
+			result.setMessage("用户积分账户不存在");
 			result.setResult(false);
 			return result;
 		}
 		
-		result.setRemark("获取用户账户信息成功");
+		result.setMessage("获取用户账户信息成功");
 		result.setResult(true);
 		result.setUsermoney(accountResult.getBalance());
 		result.setIntegral(integralResult.getPoint());
@@ -86,7 +86,7 @@ public class AccountImpl implements AccountService {
 		UserMo userResult = userMapper.getByUnionId(to.getUnionId());
 		log.info("查询用户结果为:{}", userResult);
 		if (userResult == null) {
-			result.setRemark("账户不存在");
+			result.setMessage("账户不存在");
 			result.setResult(false);
 			return result;
 		}
@@ -95,7 +95,7 @@ public class AccountImpl implements AccountService {
 		log.info("查询用户账户结果为:{}", accountResult);
 		
 		if (accountResult == null) {
-			result.setRemark("用户账户不存在");
+			result.setMessage("用户账户不存在");
 			result.setResult(false);
 			return result;
 		}
@@ -106,10 +106,10 @@ public class AccountImpl implements AccountService {
 		log.info("修改账户的结果为{}",i);
 		if(i != 1) {
 			result.setResult(false);
-			result.setRemark("修改失败");
+			result.setMessage("修改失败");
 		}
 		result.setResult(true);
-		result.setRemark("修改成功");
+		result.setMessage("修改成功");
 		
 		return result;
 	}

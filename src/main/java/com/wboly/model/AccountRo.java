@@ -15,7 +15,7 @@ public class AccountRo implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String remark;
+	private String message;
 
 	private Boolean result;
 
@@ -23,13 +23,7 @@ public class AccountRo implements Serializable {
 
 	private BigDecimal integral;
 
-	public String getRemark() {
-		return remark;
-	}
 
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
 
 	public Boolean getResult() {
 		return result;
@@ -61,11 +55,22 @@ public class AccountRo implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	@Override
 	public String toString() {
-		return "AccountRo [remark=" + remark + ", result=" + result + ", usermoney=" + usermoney + ", integral="
+		return "AccountRo [message=" + message + ", result=" + result + ", usermoney=" + usermoney + ", integral="
 				+ integral + "]";
 	}
+
+
+	
 	
 	
 }

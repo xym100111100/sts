@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  *
  */
 @JsonInclude(Include.NON_NULL)
-public class AccountTo implements Serializable {
+public class ModifyTo implements Serializable {
 	
 	/**
 	 * 
@@ -20,7 +20,15 @@ public class AccountTo implements Serializable {
 	private String unionId;
   
     private BigDecimal actionUsermoney;
-    
+
+
+
+		private BigDecimal actionIntegral ;
+
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
 
 	public String getUnionId() {
 		return unionId;
@@ -34,22 +42,24 @@ public class AccountTo implements Serializable {
 		return actionUsermoney;
 	}
 
-	@Override
-	public String toString() {
-		return "AccountTo [unionId=" + unionId + ", actionUsermoney=" + actionUsermoney + "]";
-	}
-
 	public void setActionUsermoney(BigDecimal actionUsermoney) {
 		this.actionUsermoney = actionUsermoney;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public BigDecimal getActionIntegral() {
+		return actionIntegral;
 	}
 
-    
-	
-    
+	public void setActionIntegral(BigDecimal actionIntegral) {
+		this.actionIntegral = actionIntegral;
+	}
 
-
+	@Override
+	public String toString() {
+		return "AccountTo{" +
+				"unionId='" + unionId + '\'' +
+				", actionUsermoney=" + actionUsermoney +
+				", actionIntegral=" + actionIntegral +
+				'}';
+	}
 }

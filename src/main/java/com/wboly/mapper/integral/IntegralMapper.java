@@ -1,5 +1,6 @@
 package com.wboly.mapper.integral;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -29,21 +30,10 @@ public interface IntegralMapper {
 	@Select("SELECT * FROM PNT_ACCOUNT where  ID = #{id} ")
 	IntegralMo getById(Long id);
 	
-	
-	@Select("SELECT * FROM users WHERE id = #{id}")
-	@Results({
-		@Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class),
-		@Result(property = "nickName", column = "nick_name")
-	})
-	UserMo getOne(Long id);
 
-	@Insert("INSERT INTO users(userName,passWord,user_sex) VALUES(#{userName}, #{passWord}, #{userSex})")
-	void insert(UserMo user);
 
-	@Update("UPDATE users SET userName=#{userName},nick_name=#{nickName} WHERE id =#{id}")
-	void update(UserMo user);
+	@Update("UPDATE PNT_ACCOUNT SET POINT=#{point}  WHERE id =#{id}")
+	int update(Long id , BigDecimal point);
 
-	@Delete("DELETE FROM users WHERE id =#{id}")
-	void delete(Long id);
 
 }

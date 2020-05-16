@@ -21,7 +21,7 @@ public interface UserMapper {
 
 	
 	@Select({"select ID,SALT,WX_OPENID from SUC_USER"})
-	@Results(id="studentMap", value={
+	@Results(id="userMap", value={
 	    @Result(column="ID", property="id", jdbcType=JdbcType.INTEGER, id=true),
 	    @Result(column="SALT", property="salt", jdbcType=JdbcType.VARCHAR),
 	    @Result(column="WX_OPENID", property="wxOpenid", jdbcType=JdbcType.VARCHAR),
@@ -30,28 +30,16 @@ public interface UserMapper {
 	
 	
 	@Select("SELECT ID,SALT,WX_OPENID FROM SUC_USER where  WX_OPENID = #{openId} ")
-	@ResultMap(value="studentMap")
+	@ResultMap(value="userMap")
 	UserMo getById(String openId);
 	
 	@Select("SELECT ID,SALT,WX_OPENID FROM SUC_USER where  WX_ID = #{unionId} ")
-	@ResultMap(value="studentMap")
+	@ResultMap(value="userMap")
 	UserMo getByUnionId(String unionId); 
 	
 	
-	@Select("SELECT * FROM users WHERE id = #{id}")
-	@Results({
-		@Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class),
-		@Result(property = "nickName", column = "nick_name")
-	})
-	UserMo getOne(Long id);
 
-	@Insert("INSERT INTO users(userName,passWord,user_sex) VALUES(#{userName}, #{passWord}, #{userSex})")
-	void insert(UserMo user);
 
-	@Update("UPDATE users SET userName=#{userName},nick_name=#{nickName} WHERE id =#{id}")
-	void update(UserMo user);
 
-	@Delete("DELETE FROM users WHERE id =#{id}")
-	void delete(Long id);
 
 }

@@ -13,7 +13,7 @@ spring:
   datasource:
     order:
       name: order
-      jdbcUrl: jdbc:mysql://172.18.165.232:3306/ord?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      jdbcUrl: jdbc:mysql://39.108.154.43:3306/ord?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
       username: root
       password: a3f19b71d8975ca39c212e3848826bef6bc0d96c7a21587993468dcfaa3200d4
       # 使用druid数据源
@@ -34,7 +34,7 @@ spring:
       maxOpenPreparedStatements: 20
     user:
       name: user
-      jdbc-url: jdbc:mysql://172.18.165.232:3306/suc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://39.108.154.43:3306/suc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
       username: root
       password: a3f19b71d8975ca39c212e3848826bef6bc0d96c7a21587993468dcfaa3200d4
       # 使用druid数据源
@@ -55,7 +55,7 @@ spring:
       maxOpenPreparedStatements: 20
     account:
       name: account
-      jdbc-url: jdbc:mysql://172.18.165.232:3306/afc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://39.108.154.43:3306/afc?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
       username: root
       password: a3f19b71d8975ca39c212e3848826bef6bc0d96c7a21587993468dcfaa3200d4
       # 使用druid数据源
@@ -76,7 +76,7 @@ spring:
       maxOpenPreparedStatements: 20
     integral:
       name: integral
-      jdbc-url: jdbc:mysql://172.18.165.232:3306/pnt?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://39.108.154.43:3306/pnt?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
       username: root
       password: a3f19b71d8975ca39c212e3848826bef6bc0d96c7a21587993468dcfaa3200d4
       # 使用druid数据源
@@ -102,4 +102,12 @@ logging:
   level:
     root: info
     rebue: trace
-    com.netflix.discovery: off
+    com:
+      wboly:
+        mapper: DEBUG
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

@@ -2,7 +2,12 @@ package com.wboly.impl;
 
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.wboly.model.*;
+import com.wboly.utils.PageUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wboly.mapper.account.AccountMapper;
 import com.wboly.mapper.integral.IntegralMapper;
 import com.wboly.mapper.user.UserMapper;
-import com.wboly.model.AccountMo;
-import com.wboly.model.AccountRo;
-import com.wboly.model.AccountTo;
-import com.wboly.model.IntegralMo;
-import com.wboly.model.UserMo;
 import com.wboly.service.AccountService;
 
 @Service
@@ -39,8 +39,8 @@ public class AccountImpl implements AccountService {
 
 	@Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public AccountRo getByUnionId(String unionId) {
-		AccountRo result = new AccountRo();
+	public ResultRo getByUnionId(String unionId) {
+		ResultRo result = new ResultRo();
 
 		UserMo userResult = userMapper.getByUnionId(unionId);
 		log.info("查询用户结果为:{}", userResult);
@@ -80,8 +80,14 @@ public class AccountImpl implements AccountService {
 
 	@Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public AccountRo modify(AccountTo to) {
-		AccountRo result = new AccountRo();
+	public ResultRo modify(ModifyTo to) {
+		ResultRo result = new ResultRo();
+		if(to.getUnionId() == null || to.getActionUsermoney() == null){
+			result.setMessage("参数错误，UnionId或ActionUsermoney为空");
+			result.setResult(false);
+			return result;
+		}
+
 
 		UserMo userResult = userMapper.getByUnionId(to.getUnionId());
 		log.info("查询用户结果为:{}", userResult);
@@ -112,6 +118,34 @@ public class AccountImpl implements AccountService {
 		result.setMessage("修改成功");
 		
 		return result;
+	}
+
+
+
+
+	@Override
+	public PageResult findPage(PageRequest pageRequest) {
+		return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
+	}
+
+	/**
+	 * 调用分页插件完成分页
+	 * @param pageQuery
+	 * @return
+	 */
+	private PageInfo<AccountTradeMo> getPageInfo(PageRequest pageRequest) {
+		log.info("查询流水的参数为:{}", pageRequest);
+
+
+		UserMo userResult = userMapper.getByUnionId(pageRequest.getUnionId());
+		log.info("查询用户结果为:{}", userResult);
+		if (userResult == null) {
+			return null;
+		}
+
+		PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageSize());
+		List<AccountTradeMo> sysMenus = accountMapper.selectPage(userResult.getId());
+		return new PageInfo<AccountTradeMo>(sysMenus);
 	}
 
 }

@@ -1,15 +1,14 @@
 package com.wboly.controller;
-import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.wboly.model.ModifyTo;
+import com.wboly.model.ResultRo;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wboly.model.AccountRo;
-import com.wboly.model.IntegralMo;
 import com.wboly.service.IntegralService;
 
 
@@ -24,18 +23,14 @@ public class IntegralCtrl  {
     @Resource
     private IntegralService svc;
 	
-	@GetMapping("/integral/getByUserId")
-	public IntegralMo getByUserId(Long userId) {
+
+	
+	
+	
+	@PutMapping("/integral/modify")
+	public ResultRo modify(@RequestBody ModifyTo to ) {
 		
-		return svc.getById(userId);
-	}
-	
-	
-	
-	@GetMapping("/integral/getAll")
-	public List<IntegralMo> getAllList() {
-		
-		return svc.getAllList();
+		return svc.modify(to);
 	}
 	
 
